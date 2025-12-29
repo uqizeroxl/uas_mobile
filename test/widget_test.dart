@@ -28,7 +28,8 @@ void main() {
     await tester.tap(find.byIcon(Icons.menu_book_rounded));
     await tester.pump();
 
-    // Verify that our Course tab is showing.
-    expect(find.text('Kursus Tab'), findsOneWidget);
+    // Verify that our Course tab is showing (Check for a course title only present in the list)
+    expect(find.text('Basis Data'), findsOneWidget); // Found in CourseScreen but not HomeScreen
+    expect(find.text('Jadwal Masuk'), findsNothing);
   });
 }

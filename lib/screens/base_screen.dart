@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import 'home_screen.dart';
+import 'course_screen.dart';
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({super.key});
@@ -14,7 +15,7 @@ class _BaseScreenState extends State<BaseScreen> {
 
   List<Widget> get _pages => [
     const HomeScreen(),
-    const Center(child: Text('Kursus Tab')),
+    const CourseScreen(),
     const Center(child: Text('Pesan Tab')),
   ];
 
