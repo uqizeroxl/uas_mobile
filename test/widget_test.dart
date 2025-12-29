@@ -15,9 +15,14 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
-    // Verify that our home tab is showing.
-    expect(find.text('Home Tab'), findsOneWidget);
+    // Verify that our home tab is showing (Incoming Course text)
+    expect(find.text('Incoming Course'), findsOneWidget);
     expect(find.text('Course Tab'), findsNothing);
+
+    // Verify AppBar content
+    expect(find.text('Hi, Alvin'), findsOneWidget);
+    // There might be multiple person icons (AppBar + Cards), check for at least one or specify key
+    expect(find.byIcon(Icons.person), findsAtLeastNWidgets(1));
 
     // Tap the Course icon and trigger a frame.
     await tester.tap(find.byIcon(Icons.menu_book_rounded));

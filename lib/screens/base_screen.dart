@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
+import 'home_screen.dart';
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({super.key});
@@ -12,10 +13,9 @@ class _BaseScreenState extends State<BaseScreen> {
   int _selectedIndex = 0;
 
   List<Widget> get _pages => [
-    const Center(child: Text('Home Tab')),
+    const HomeScreen(),
     const Center(child: Text('Course Tab')),
     const Center(child: Text('Message Tab')),
-    const Center(child: Text('Profile Tab')),
   ];
 
   void _onItemTapped(int index) {
@@ -27,6 +27,32 @@ class _BaseScreenState extends State<BaseScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: AppColors.primary, // Red background for Top Bar
+        elevation: 0,
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Hi, Alvin',
+              style: const TextStyle(
+                color: AppColors.textOnPrimary, // White text
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: CircleAvatar(
+              backgroundColor: Colors.white.withOpacity(0.2), // Subtle background for icon
+              child: const Icon(Icons.person, color: AppColors.textOnPrimary),
+            ),
+          ),
+        ],
+      ),
       body: _pages[_selectedIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
@@ -60,10 +86,6 @@ class _BaseScreenState extends State<BaseScreen> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.mail_outline_rounded),
                 label: 'Message',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline_rounded),
-                label: 'Account',
               ),
             ],
             currentIndex: _selectedIndex,
