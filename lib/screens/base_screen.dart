@@ -11,7 +11,7 @@ class BaseScreen extends StatefulWidget {
 class _BaseScreenState extends State<BaseScreen> {
   int _selectedIndex = 0;
 
-  final List<Widget> _pages = [
+  List<Widget> get _pages => [
     const Center(child: Text('Home Tab')),
     const Center(child: Text('Course Tab')),
     const Center(child: Text('Message Tab')),
