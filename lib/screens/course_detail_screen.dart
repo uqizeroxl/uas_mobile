@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
+import 'module_content_screen.dart';
 
 class CourseDetailScreen extends StatelessWidget {
   final String title;
   final double progress;
   final Color iconColor;
+
+  final List<Map<String, dynamic>> modules = const [
+    {'number': 1, 'title': 'Pendahuluan', 'isCompleted': true},
+    {'number': 2, 'title': 'Konsep Dasar', 'isCompleted': true},
+    {'number': 3, 'title': 'Implementasi Lanjutan', 'isCompleted': false},
+    {'number': 4, 'title': 'Studi Kasus', 'isCompleted': false},
+    {'number': 5, 'title': 'Proyek Akhir', 'isCompleted': false},
+  ];
 
   const CourseDetailScreen({
     super.key,
@@ -100,50 +109,69 @@ class CourseDetailScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 10),
-            _buildModuleItem(1, 'Pendahuluan', true),
-            _buildModuleItem(2, 'Konsep Dasar', true),
-            _buildModuleItem(3, 'Implementasi Lanjutan', false),
-            _buildModuleItem(4, 'Studi Kasus', false),
-            _buildModuleItem(5, 'Proyek Akhir', false),
+            ...modules.asMap().entries.map((entry) {
+              final index = entry.key;
+              final module = entry.value;
+              return _buildModuleItem(
+                context,
+                index,
+                module['number'] as int,
+                module['title'] as String,
+                module['isCompleted'] as bool,
+              );
+            }),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildModuleItem(int number, String title, bool isCompleted) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: isCompleted ? AppColors.secondary.withOpacity(0.5) : Colors.grey.withOpacity(0.2),
-        ),
-      ),
-      child: Row(
-        children: [
-          CircleAvatar(
-            radius: 14,
-            backgroundColor: isCompleted ? AppColors.secondary : Colors.grey.withOpacity(0.3),
-            child: Icon(
-              isCompleted ? Icons.check : Icons.lock_outline,
-              size: 16,
-              color: Colors.white,
+  Widget _buildModuleItem(BuildContext context, int index, int number, String title, bool isCompleted) {
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ModuleContentScreen(
+              modules: modules,
+              currentIndex: index,
             ),
           ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Text(
-              'Modul $number: $title',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: isCompleted ? AppColors.textPrimary : AppColors.textSecondary,
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 12),
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: isCompleted ? AppColors.secondary.withOpacity(0.5) : Colors.grey.withOpacity(0.2),
+          ),
+        ),
+        child: Row(
+          children: [
+            CircleAvatar(
+              radius: 14,
+              backgroundColor: isCompleted ? AppColors.secondary : Colors.grey.withOpacity(0.3),
+              child: Icon(
+                isCompleted ? Icons.check : Icons.lock_outline,
+                size: 16,
+                color: Colors.white,
               ),
             ),
-          ),
-        ],
+            const SizedBox(width: 16),
+            Expanded(
+              child: Text(
+                'Modul $number: $title',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: isCompleted ? AppColors.textPrimary : AppColors.textSecondary,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

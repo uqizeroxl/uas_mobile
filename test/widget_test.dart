@@ -39,5 +39,29 @@ void main() {
     // Verify CourseDetailScreen is shown (Check for description header)
     expect(find.text('Deskripsi Mata Kuliah'), findsOneWidget);
     expect(find.text('Basis Data'), findsAtLeastNWidgets(1)); // Title should be present
+
+    // Tap on a Module item to open ModuleContentScreen
+    await tester.tap(find.text('Modul 1: Pendahuluan'));
+    await tester.pumpAndSettle();
+
+    // Verify ModuleContentScreen is shown
+    expect(find.text('Pendahuluan'), findsOneWidget); // Module title
+    expect(find.text('Materi Bacaan'), findsOneWidget); // Section header
+    expect(find.byIcon(Icons.play_circle_fill), findsOneWidget); // Video placeholder
+
+    // Check navigation buttons (Should show Next only for 1st module)
+    expect(find.text('Selanjutnya'), findsOneWidget);
+    expect(find.text('Sebelumnya'), findsNothing);
+
+    // Scroll until "Selanjutnya" is visible and tap it
+    await tester.drag(find.byType(SingleChildScrollView), const Offset(0, -500));
+    await tester.pumpAndSettle();
+    
+    await tester.tap(find.text('Selanjutnya'));
+    await tester.pumpAndSettle();
+
+    // Verify next module is shown
+    expect(find.text('Konsep Dasar'), findsOneWidget); // Module 2 title
+    expect(find.text('Sebelumnya'), findsOneWidget); // Now Previous should be visible
   });
 }
