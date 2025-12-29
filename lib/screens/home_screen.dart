@@ -9,15 +9,15 @@ class HomeScreen extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(20.0),
       children: const [
-        _SectionHeader(title: 'Incoming Course'),
+        _SectionHeader(title: 'Jadwal Masuk'),
         SizedBox(height: 10),
         _IncomingCourseCard(),
         SizedBox(height: 20),
-        _SectionHeader(title: 'Announcement'),
+        _SectionHeader(title: 'Pengumuman'),
         SizedBox(height: 10),
         _AnnouncementCard(),
         SizedBox(height: 20),
-        _SectionHeader(title: 'Recent Course'),
+        _SectionHeader(title: 'Mata Kuliah Terakhir'),
         SizedBox(height: 10),
         _RecentCourseList(),
       ],
@@ -73,13 +73,13 @@ class _IncomingCourseCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Text(
-                '09:30 AM',
+                '09:30',
                 style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(height: 8),
             const Text(
-              'Room 404 - Lab Computer',
+              'Ruang 404 - Lab Komputer',
               style: TextStyle(color: Colors.white70, fontSize: 14),
             ),
             const SizedBox(height: 16),
@@ -92,7 +92,7 @@ class _IncomingCourseCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 const Text(
-                  'Mr. John Doe',
+                  'Pak John Doe',
                   style: TextStyle(color: Colors.white, fontSize: 14),
                 ),
               ],
@@ -132,7 +132,7 @@ class _AnnouncementCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Midterm Exam Schedule',
+                    'Jadwal UTS',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
@@ -141,7 +141,7 @@ class _AnnouncementCard extends StatelessWidget {
                   ),
                   SizedBox(height: 4),
                   Text(
-                    'Check your schedule now!',
+                    'Cek jadwalmu sekarang!',
                     style: TextStyle(color: AppColors.textSecondary, fontSize: 12),
                   ),
                 ],
@@ -160,9 +160,9 @@ class _RecentCourseList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final courses = [
-      {'title': 'Data Structures', 'progress': 0.75, 'color': Colors.blue},
-      {'title': 'Web Development', 'progress': 0.45, 'color': Colors.orange},
-      {'title': 'Algorithms', 'progress': 0.90, 'color': Colors.purple},
+      {'title': 'Struktur Data', 'progress': 0.75, 'color': Colors.blue},
+      {'title': 'Pemrograman Web', 'progress': 0.45, 'color': Colors.orange},
+      {'title': 'Algoritma', 'progress': 0.90, 'color': Colors.purple},
     ];
 
     return Column(
@@ -233,7 +233,7 @@ class _RecentCourseItem extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    '${(progress * 100).toInt()}% Completed',
+                    '${(progress * 100).toInt()}% Selesai',
                     style: const TextStyle(fontSize: 11, color: AppColors.textSecondary),
                   ),
                 ],

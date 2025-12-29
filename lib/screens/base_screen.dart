@@ -14,8 +14,8 @@ class _BaseScreenState extends State<BaseScreen> {
 
   List<Widget> get _pages => [
     const HomeScreen(),
-    const Center(child: Text('Course Tab')),
-    const Center(child: Text('Message Tab')),
+    const Center(child: Text('Kursus Tab')),
+    const Center(child: Text('Pesan Tab')),
   ];
 
   void _onItemTapped(int index) {
@@ -34,7 +34,7 @@ class _BaseScreenState extends State<BaseScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Hi, Alvin',
+              'Hai, Alvin',
               style: const TextStyle(
                 color: AppColors.textOnPrimary, // White text
                 fontSize: 24,
@@ -77,15 +77,15 @@ class _BaseScreenState extends State<BaseScreen> {
             items: const <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 icon: Icon(Icons.home_filled),
-                label: 'Home',
+                label: 'Beranda',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.menu_book_rounded),
-                label: 'Course',
+                label: 'Kursus',
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.mail_outline_rounded),
-                label: 'Message',
+                label: 'Pesan',
               ),
             ],
             currentIndex: _selectedIndex,

@@ -16,11 +16,11 @@ void main() {
     await tester.pumpWidget(const MyApp());
 
     // Verify that our home tab is showing (Incoming Course text)
-    expect(find.text('Incoming Course'), findsOneWidget);
-    expect(find.text('Course Tab'), findsNothing);
+    expect(find.text('Jadwal Masuk'), findsOneWidget);
+    expect(find.text('Kursus Tab'), findsNothing);
 
     // Verify AppBar content
-    expect(find.text('Hi, Alvin'), findsOneWidget);
+    expect(find.text('Hai, Alvin'), findsOneWidget);
     // There might be multiple person icons (AppBar + Cards), check for at least one or specify key
     expect(find.byIcon(Icons.person), findsAtLeastNWidgets(1));
 
@@ -29,6 +29,6 @@ void main() {
     await tester.pump();
 
     // Verify that our Course tab is showing.
-    expect(find.text('Course Tab'), findsOneWidget);
+    expect(find.text('Kursus Tab'), findsOneWidget);
   });
 }
