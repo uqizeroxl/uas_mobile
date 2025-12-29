@@ -31,5 +31,13 @@ void main() {
     // Verify that our Course tab is showing (Check for a course title only present in the list)
     expect(find.text('Basis Data'), findsOneWidget); // Found in CourseScreen but not HomeScreen
     expect(find.text('Jadwal Masuk'), findsNothing);
+
+    // Tap on a CourseCard to open CourseDetailScreen
+    await tester.tap(find.text('Basis Data'));
+    await tester.pumpAndSettle(); // Wait for navigation animation
+
+    // Verify CourseDetailScreen is shown (Check for description header)
+    expect(find.text('Deskripsi Mata Kuliah'), findsOneWidget);
+    expect(find.text('Basis Data'), findsAtLeastNWidgets(1)); // Title should be present
   });
 }

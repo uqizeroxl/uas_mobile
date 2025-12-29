@@ -5,12 +5,14 @@ class CourseCard extends StatelessWidget {
   final String title;
   final double progress;
   final Color iconColor;
+  final VoidCallback? onTap;
 
   const CourseCard({
     super.key,
     required this.title,
     required this.progress,
     required this.iconColor,
+    this.onTap,
   });
 
   @override
@@ -18,12 +20,15 @@ class CourseCard extends StatelessWidget {
     return Card(
       elevation: 1,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      clipBehavior: Clip.antiAlias, // Add clip behavior for InkWell
       surfaceTintColor: Colors.white,
       color: Colors.white,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          children: [
+      child: InkWell(
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            children: [
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
@@ -64,6 +69,6 @@ class CourseCard extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ));
   }
 }

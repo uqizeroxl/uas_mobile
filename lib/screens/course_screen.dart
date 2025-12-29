@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
 import '../widgets/course_card.dart';
+import 'course_detail_screen.dart';
 
 class CourseScreen extends StatelessWidget {
   const CourseScreen({super.key});
@@ -31,6 +32,18 @@ class CourseScreen extends StatelessWidget {
               title: course['title'] as String,
               progress: course['progress'] as double,
               iconColor: course['color'] as Color,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CourseDetailScreen(
+                      title: course['title'] as String,
+                      progress: course['progress'] as double,
+                      iconColor: course['color'] as Color,
+                    ),
+                  ),
+                );
+              },
             ),
           );
         },
